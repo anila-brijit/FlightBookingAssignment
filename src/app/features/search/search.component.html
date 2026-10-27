@@ -1,0 +1,58 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<section class="page-shell">
+  <div class="hero">
+    <p class="eyebrow">A simpler way to fly</p>
+    <h1>Your next journey starts here.</h1>
+    <p class="muted">Compare sample fares, choose a flight, and confirm your passenger details.</p>
+  </div>
+
+  <form class="panel search-form" [formGroup]="searchForm" (ngSubmit)="submitSearch()">
+    <div class="field-grid">
+      <div class="form-field">
+        <label for="source">From</label>
+        <select id="source" formControlName="source">
+          <option value="Chennai">Chennai (MAA)</option>
+          <option value="Delhi">Delhi (DEL)</option>
+          <option value="Mumbai">Mumbai (BOM)</option>
+          <option value="Paris">Paris (CDG)</option>
+        </select>
+        @if (searchForm.controls.source.touched && searchForm.controls.source.invalid) {
+          <span class="field-error">Choose a departure city.</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="destination">To</label>
+        <select id="destination" formControlName="destination">
+          <option value="Paris">Paris (CDG)</option>
+          <option value="Chennai">Chennai (MAA)</option>
+          <option value="Delhi">Delhi (DEL)</option>
+          <option value="Mumbai">Mumbai (BOM)</option>
+        </select>
+        @if (searchForm.controls.destination.errors?.['sameCity']) {
+          <span class="field-error">Origin and destination must be different.</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="departureDate">Departure</label>
+        <input id="departureDate" type="date" [min]="today" formControlName="departureDate">
+        @if (searchForm.controls.departureDate.touched && searchForm.controls.departureDate.invalid) {
+          <span class="field-error">Choose a departure date.</span>
+        }
+      </div>
+      <div class="form-field">
+        <label for="returnDate">Return (round-trip only)</label>
+        <input id="returnDate" type="date" [min]="searchForm.controls.departureDate.value" formControlName="returnDate" [disabled]="!searchForm.controls.roundTrip.value">
+        @if (searchForm.controls.returnDate.errors?.['invalidReturnDate']) {
+          <span class="field-error">Return date must be on or after departure.</span>
+        }
+      </div>
+    </div>
+    <label class="trip-toggle">
+      <input type="checkbox" formControlName="roundTrip">
+      <span>Round trip</span>
+    </label>
+    <div class="submit-row">
+      <button class="primary-button" type="submit">Search flights <span aria-hidden="true">→</span></button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,8 @@
+/* Component styles: layout and visual presentation for this part of the application. */
+.filters { display:flex; flex-direction:column; gap:14px; }
+.filters h2 { margin:0; font-size:1.05rem; }
+.filter-option { display:flex; align-items:center; gap:9px; margin:8px 0; font-size:.92rem; }
+fieldset { border:0; border-top:1px solid #e5e7eb; padding:10px 0 0; margin:0; }
+legend { font-weight:700; padding:0 6px 0 0; }
+.sort-field { margin-top:8px;}
+.sort-select{padding: 4px 4px;}

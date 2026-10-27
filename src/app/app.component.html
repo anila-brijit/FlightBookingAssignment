@@ -1,0 +1,14 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<header class="site-header">
+  <a class="brand" routerLink="/search" aria-label="Flight Booking">
+    <span class="brand-mark" aria-hidden="true">&#x2708;</span>
+    <span> <small>FLIGHT BOOKING</small></span>
+  </a>
+  <nav aria-label="Main navigation">
+    <a routerLink="/search" routerLinkActive="active">Search flights</a>
+  </nav>
+</header>
+<main>
+  <router-outlet />
+</main>
+<footer class="site-footer">Demo booking experience · Sample data only</footer>

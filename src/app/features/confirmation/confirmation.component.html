@@ -1,0 +1,45 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<section class="page-shell confirmation-shell">
+  @if (booking; as confirmedBooking) {
+    <div class="panel confirmation-card">
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <p class="eyebrow">Booking confirmed</p>
+      <h1>Your trip is on its way.</h1>
+      <p class="muted">Your demo booking has been created successfully. No payment was collected.</p>
+
+      <div class="reference-box">
+        <span>Booking reference</span>
+        <strong>{{ confirmedBooking.reference }}</strong>
+      </div>
+
+      <div class="trip-summary">
+        <div>
+          <span class="muted">From</span>
+          <strong>{{ confirmedBooking.flight.source }}</strong>
+          <small>{{ confirmedBooking.flight.departureTime }}</small>
+        </div>
+        <span class="trip-arrow" aria-hidden="true">→</span>
+        <div>
+          <span class="muted">To</span>
+          <strong>{{ confirmedBooking.flight.destination }}</strong>
+          <small>{{ confirmedBooking.flight.arrivalTime }}</small>
+        </div>
+      </div>
+
+      <dl class="details-list">
+        <div><dt>Lead passenger</dt><dd>{{ confirmedBooking.passenger.fullName }}</dd></div>
+        <div><dt>Passengers</dt><dd>{{ confirmedBooking.passengers }}</dd></div>
+        <div><dt>Email</dt><dd>{{ confirmedBooking.passenger.email }}</dd></div>
+        <div><dt>Flight</dt><dd>{{ confirmedBooking.flight.airline }} · {{ confirmedBooking.flight.flightNumber }}</dd></div>
+        <div><dt>Departure date</dt><dd>{{ confirmedBooking.flight.departureDate | date:'EEE, MMM d, y' }}</dd></div>
+        @if (confirmedBooking.returnDate) {
+          <div><dt>Return date</dt><dd>{{ confirmedBooking.returnDate | date:'EEE, MMM d, y' }}</dd></div>
+        }
+        <div><dt>Price per passenger</dt><dd>{{ confirmedBooking.flight.price | currency:confirmedBooking.flight.currency:'symbol-narrow':'1.0-0' }}</dd></div>
+        <div><dt>Total fare</dt><dd>{{ confirmedBooking.flight.price * confirmedBooking.passengers | currency:confirmedBooking.flight.currency:'symbol-narrow':'1.0-0' }}</dd></div>
+      </dl>
+
+      <a class="primary-button home-button" routerLink="/search">Book another flight</a>
+    </div>
+  }
+</section>

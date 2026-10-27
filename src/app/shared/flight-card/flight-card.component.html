@@ -1,0 +1,23 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<article class="panel flight-card">
+  <div class="airline-block">
+    <span class="airline-avatar" aria-hidden="true">{{ flight().airline.slice(0, 1) }}</span>
+    <div><strong>{{ flight().airline }}</strong><small>{{ flight().flightNumber }}</small></div>
+  </div>
+  <div class="route-block">
+    <strong>{{ flight().departureTime }}</strong><small>{{ flight().source }}</small>
+  </div>
+  <div class="duration-block">
+    <span>{{ (flight().durationMinutes / 60) | number:'1.0-0' }}h approx.</span>
+    <span class="route-line" aria-hidden="true"></span>
+    <small>{{ flight().stops === 0 ? 'Non-stop' : flight().stops + ' stop(s)' }}</small>
+  </div>
+  <div class="route-block">
+    <strong>{{ flight().arrivalTime }}</strong><small>{{ flight().destination }}</small>
+  </div>
+  <div class="price-block">
+    <strong>{{ flight().price | currency:flight().currency:'symbol-narrow':'1.0-0' }}</strong>
+    <small>per passenger</small>
+    <button class="primary-button" type="button" (click)="selectFlight()">Select</button>
+  </div>
+</article>

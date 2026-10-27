@@ -1,0 +1,64 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<section class="page-shell">
+  <h1 class="page-title">Passenger details</h1>
+  <p class="muted page-intro">Enter the details of the person traveling. This demo does not process payment.</p>
+
+  @if (flight; as selectedFlight) {
+    <div class="checkout-layout">
+      <form class="panel passenger-form" [formGroup]="passengerForm" (ngSubmit)="submitBooking()" novalidate>
+        <h2>Lead passenger</h2>
+        <div class="form-field">
+          <label for="fullName">Full name</label>
+          <input id="fullName" type="text" autocomplete="name" formControlName="fullName" placeholder="As shown on ID">
+          @if (passengerForm.controls.fullName.touched && passengerForm.controls.fullName.errors?.['required']) {
+            <span class="field-error">Full name is required.</span>
+          }
+          @if (passengerForm.controls.fullName.touched && passengerForm.controls.fullName.errors?.['minlength']) {
+            <span class="field-error">Enter at least 2 characters.</span>
+          }
+        </div>
+        <div class="form-field">
+          <label for="email">Email address</label>
+          <input id="email" type="email" autocomplete="email" formControlName="email" placeholder="you@example.com">
+          @if (passengerForm.controls.email.touched && passengerForm.controls.email.errors) {
+            <span class="field-error">Enter a valid email address.</span>
+          }
+        </div>
+        <div class="form-field">
+          <label for="passengers">Number of passengers</label>
+          <select id="passengers" formControlName="passengers">
+            @for (count of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track count) {
+              <option [ngValue]="count">{{ count }} {{ count === 1 ? 'passenger' : 'passengers' }}</option>
+            }
+          </select>
+          @if (passengerForm.controls.passengers.invalid && passengerForm.controls.passengers.touched) {
+            <span class="field-error">Choose between 1 and 9 passengers.</span>
+          }
+        </div>
+        <div class="form-field">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="tel" autocomplete="tel" formControlName="phone" placeholder="Phone number">
+          @if (passengerForm.controls.phone.touched && passengerForm.controls.phone.errors) {
+            <span class="field-error">Enter a valid phone number (8–18 characters).</span>
+          }
+        </div>
+        <div class="form-actions">
+          <a routerLink="/results" class="back-link">← Back to flights</a>
+          <button class="primary-button" type="submit">Confirm booking</button>
+        </div>
+      </form>
+
+      <aside class="panel summary">
+        <p class="eyebrow">Your flight</p>
+        <h2>{{ selectedFlight.source }} <span aria-hidden="true">→</span> {{ selectedFlight.destination }}</h2>
+        <p class="muted">{{ selectedFlight.airline }} · {{ selectedFlight.flightNumber }}</p>
+        <div class="summary-row"><span>Departure</span><strong>{{ selectedFlight.departureDate }} · {{ selectedFlight.departureTime }}</strong></div>
+        <div class="summary-row"><span>Arrival</span><strong>{{ selectedFlight.arrivalTime }}</strong></div>
+        <div class="summary-row"><span>Stops</span><strong>{{ selectedFlight.stops === 0 ? 'Non-stop' : selectedFlight.stops }}</strong></div>
+        <div class="summary-row"><span>Passengers</span><strong>{{ passengerForm.controls.passengers.value }}</strong></div>
+        <div class="summary-row"><span>Price per passenger</span><strong>{{ selectedFlight.price | currency:selectedFlight.currency:'symbol-narrow':'1.0-0' }}</strong></div>
+        <div class="total-row"><span>Total fare</span><strong>{{ selectedFlight.price * passengerForm.controls.passengers.value | currency:selectedFlight.currency:'symbol-narrow':'1.0-0' }}</strong></div>
+      </aside>
+    </div>
+  }
+</section>

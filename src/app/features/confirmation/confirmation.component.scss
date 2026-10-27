@@ -1,0 +1,19 @@
+/* Component styles: layout and visual presentation for this part of the application. */
+.confirmation-shell { max-width:760px; }
+.confirmation-card { text-align:center; padding:clamp(22px,5vw,48px); }
+.success-icon { display:grid; place-items:center; width:60px; height:60px; margin:0 auto 18px; border-radius:50%; color:#067647; background:#dcfae6; font-size:1.8rem; font-weight:900; }
+.confirmation-card h1 { margin:8px 0; font-size:clamp(2rem,5vw,2.7rem); letter-spacing:-.04em; }
+.reference-box { display:flex; flex-direction:column; gap:7px; margin:26px 0; padding:18px; border:1px dashed #9bb0ec; border-radius:12px; background:#f5f7ff; }
+.reference-box span { color:#667085; font-size:.82rem; }
+.reference-box strong { color:#315ed4; font-size:1.45rem; letter-spacing:.08em; }
+.trip-summary { display:flex; align-items:center; justify-content:center; gap:28px; padding:22px 0; border-bottom:1px solid #e3e9f2; }
+.trip-summary div { display:flex; flex-direction:column; gap:6px; min-width:100px; }
+.trip-summary strong { font-size:1.2rem; }
+.trip-summary small { color:#667085; }
+.trip-arrow { color:#315ed4; font-size:1.5rem; }
+.details-list { margin:18px 0 26px; text-align:left; }
+.details-list div { display:flex; justify-content:space-between; gap:20px; padding:12px 0; border-bottom:1px solid #edf0f5; }
+.details-list dt { color:#667085; }
+.details-list dd { margin:0; font-weight:700; text-align:right; overflow-wrap:anywhere; }
+.home-button { display:inline-block; text-decoration:none; }
+@media (max-width:480px) { .details-list div { flex-direction:column; gap:5px; } .details-list dd { text-align:left; } }

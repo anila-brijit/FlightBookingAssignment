@@ -1,0 +1,12 @@
+/* Component styles: layout and visual presentation for this part of the application. */
+.flight-card { display:grid; grid-template-columns:1.25fr .7fr 1fr .7fr 1fr; align-items:center; gap:15px; padding:20px; }
+.airline-block { display:flex; align-items:center; gap:10px; }
+.airline-avatar { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:#edf2ff; color:#315ed4; font-weight:850; }
+.airline-block small, .route-block small, .duration-block small, .price-block small { display:block; margin-top:5px; color:#667085; font-size:.78rem; }
+.route-block strong, .price-block strong { font-size:1.12rem; }
+.duration-block { display:flex; flex-direction:column; gap:6px; color:#667085; text-align:center; font-size:.8rem; }
+.route-line { height:1px; width:100%; background:#cbd5e1; position:relative; }
+.route-line::after { content:'✈'; position:absolute; top:-10px; left:calc(50% - 7px); color:#315ed4; background:white; padding:0 3px; }
+.price-block { text-align:right; }
+.price-block .primary-button { margin-top:10px; padding:9px 15px; }
+@media (max-width:700px) { .flight-card { grid-template-columns:1fr 1fr; } .duration-block { grid-column:1/-1; grid-row:2; } .price-block { text-align:left; } }

@@ -1,0 +1,29 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<aside class="panel filters" aria-label="Flight filters">
+  <h2>Filters</h2>
+  <fieldset>
+    <legend>Airlines</legend>
+    @for (airline of airlines(); track airline) {
+      <label class="filter-option">
+        <input type="checkbox" [checked]="isAirlineSelected(airline)"
+          (change)="toggleAirline(airline, $any($event.target).checked)">
+        {{ airline }}
+      </label>
+    }
+  </fieldset>
+  <fieldset>
+    <legend>Departure time</legend>
+    <label class="filter-option"><input type="checkbox" [checked]="isSlotSelected('morning')" (change)="toggleSlot('morning', $any($event.target).checked)"> Morning (00:00–11:59)</label>
+    <label class="filter-option"><input type="checkbox" [checked]="isSlotSelected('afternoon')" (change)="toggleSlot('afternoon', $any($event.target).checked)"> Afternoon (12:00–17:59)</label>
+    <label class="filter-option"><input type="checkbox" [checked]="isSlotSelected('evening')" (change)="toggleSlot('evening', $any($event.target).checked)"> Evening (18:00–23:59)</label>
+  </fieldset>
+  <div class="form-field sort-field">
+    <label for="sortBy">Sort by</label>
+    <select id="sortBy" [value]="sortBy()" (change)="sortChange.emit($any($event.target).value)"  class="sort-select">
+      <option value="price-asc">Price: lowest to highest</option>
+      <option value="price-desc">Price: highest to lowest</option>
+      <option value="duration-asc">Duration: shortest first</option>
+      <option value="duration-desc">Duration: longest first</option>
+    </select>
+  </div>
+</aside>

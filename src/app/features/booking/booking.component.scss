@@ -1,0 +1,18 @@
+/* Component styles: layout and visual presentation for this part of the application. */
+.page-title { margin:8px 0; font-size:clamp(2rem,4vw,2.6rem); letter-spacing:-.04em; }
+.page-intro { margin:0 0 24px; }
+.checkout-layout { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(280px,.8fr); gap:20px; align-items:start; }
+.passenger-form { display:flex; flex-direction:column; gap:20px; }
+.passenger-form h2, .summary h2 { margin:0; }
+.form-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:4px; }
+.back-link { color:#315ed4; text-decoration:none; font-weight:700; }
+.summary { display:flex; flex-direction:column; gap:16px; }
+.summary h2 { font-size:1.25rem; }
+.summary p { margin:0; }
+.summary-row, .total-row { display:flex; justify-content:space-between; gap:14px; font-size:.9rem; }
+.summary-row span { color:#667085; }
+.summary-row strong { text-align:right; }
+.total-row { border-top:1px solid #e3e9f2; padding-top:16px; font-size:1rem; }
+.total-row strong { color:#315ed4; font-size:1.3rem; }
+@media (max-width:750px) { .checkout-layout { grid-template-columns:1fr; } }
+@media (max-width:480px) { .form-actions { align-items:stretch; flex-direction:column-reverse; } .form-actions .primary-button { width:100%; } }

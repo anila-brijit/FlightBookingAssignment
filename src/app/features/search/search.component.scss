@@ -1,0 +1,11 @@
+/* Component styles: layout and visual presentation for this part of the application. */
+.hero { padding:20px 0 28px; }
+.hero h1 { max-width:680px; margin:8px 0 10px; font-size:clamp(2rem, 5vw, 3.25rem); letter-spacing:-.045em; line-height:1.08; }
+.hero p:last-child { margin-bottom:0; }
+.search-form { display:flex; flex-direction:column; gap:24px; }
+.field-grid { display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:16px; }
+.trip-toggle { display:flex; align-items:center; gap:9px; width:max-content; font-weight:700; }
+.submit-row { display:flex; align-items:center; justify-content:space-between; gap:16px; border-top:1px solid #edf0f5; padding-top:20px; }
+.info-strip { display:flex; flex-wrap:wrap; gap:24px; margin-top:24px; color:#475467; font-size:.9rem; }
+@media (max-width:800px) { .field-grid { grid-template-columns:repeat(2, minmax(0,1fr)); } }
+@media (max-width:520px) { .field-grid { grid-template-columns:1fr; } .submit-row { align-items:stretch; flex-direction:column; } }

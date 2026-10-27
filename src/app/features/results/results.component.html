@@ -1,0 +1,32 @@
+<!-- Template: renders this component's user interface. Component behavior is defined in the matching TypeScript file. -->
+<section class="page-shell">
+  <div class="results-heading">
+    <div>
+      <p class="eyebrow">Flight results</p>
+      <h1>{{ criteria?.source }} <span aria-hidden="true">→</span> {{ criteria?.destination }}</h1>
+      <p class="muted">{{ criteria?.departureDate | date:'EEE, MMM d, y' }} · {{ visibleFlights().length }} flight(s) found</p>
+    </div>
+    <button class="secondary-button" type="button" (click)="changeSearch()">Edit search</button>
+  </div>
+  <div class="results-layout">
+    <app-filter-sidebar
+      [airlines]="airlines()"
+      [selectedAirlines]="selectedAirlines()"
+      [selectedSlots]="selectedSlots()"
+      [sortBy]="sortBy()"
+      (airlinesChange)="selectedAirlines.set($event)"
+      (slotsChange)="selectedSlots.set($event)"
+      (sortChange)="sortBy.set($event)" />
+    <div class="flight-list">
+      @for (flight of visibleFlights(); track flight.id) {
+        <app-flight-card [flight]="flight" (select)="chooseFlight($event)" />
+      } @empty {
+        <div class="panel empty-state">
+          <h2>No flights found</h2>
+          <p class="muted">Try another route or date, or remove one of the filters.</p>
+          <button class="primary-button" type="button" (click)="changeSearch()">Change search</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
